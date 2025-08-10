@@ -75,14 +75,14 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: 'Filled Donut', price: '45 EGP', emoji: '🍩', image: 'donuts/DONUT3.png', desc: 'Cream or jam inside' },
       ],
       'Matcha Latte': [
-        { name: 'Hot Matcha Latte', price: '75 EGP', emoji: '🍵', desc: 'Earthy and warm' },
-        { name: 'Iced Matcha Latte', price: '80 EGP', emoji: '🧊🍵', desc: 'Refreshing' },
-        { name: 'Oat Matcha Latte', price: '90 EGP', emoji: '🍵🌾', desc: 'Plant-based' },
+        { name: 'Hot Matcha Latte', price: '75 EGP', emoji: '🍵', image: 'matcha/Matcha .png', desc: 'Earthy and warm' },
+        { name: 'Iced Matcha Latte', price: '80 EGP', emoji: '🧊🍵', image: 'matcha/Matcha Iced.png', desc: 'Refreshing' },
+        { name: 'Oat Matcha Latte', price: '90 EGP', emoji: '🍵🌾', image: 'matcha/Matcha Oat.png', desc: 'Plant-based' },
       ],
       'Cupcakes': [
-        { name: 'Vanilla Cupcake', price: '35 EGP', emoji: '🧁', desc: 'Simple and sweet' },
-        { name: 'Chocolate Cupcake', price: '38 EGP', emoji: '🧁🍫', desc: 'Chocolate sponge' },
-        { name: 'Red Velvet Cupcake', price: '42 EGP', emoji: '🧁', desc: 'Cream cheese frosting' },
+        { name: 'Vanilla Cupcake', price: '35 EGP', emoji: '🧁', image: 'cupcakes/Cupcake Vanilla.png', desc: 'Simple and sweet' },
+        { name: 'Chocolate Cupcake', price: '38 EGP', emoji: '🧁🍫', image: 'cupcakes/Cupcake Chocolate.png', desc: 'Chocolate sponge' },
+        { name: 'Red Velvet Cupcake', price: '42 EGP', emoji: '🧁', image: 'cupcakes/Cupcake Red Velvet.png', desc: 'Cream cheese frosting' },
       ],
     };
 
