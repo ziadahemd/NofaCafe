@@ -1,5 +1,12 @@
     /* Anchor absolute overlays to the hero (keep for other accents) */
     #hero { position: relative; }
+    /* Hero background image */
+    #hero {
+      background-image: url('BG-1.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
 .nav-link {
       position: relative;
       padding-bottom: 4px;
