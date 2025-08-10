@@ -55,24 +55,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const catalog = {
       'Espresso': [
-        { name: 'Single Espresso', price: '45 EGP', emoji: '☕', desc: 'Pure and bold shot' },
-        { name: 'Double Espresso', price: '60 EGP', emoji: '☕☕', desc: 'Twice the kick' },
-        { name: 'Iced Espresso', price: '55 EGP', emoji: '🧊☕', desc: 'Chilled and strong' },
+        { name: 'Single Espresso', price: '45 EGP', emoji: '☕', image: 'espresoo/espresoo Single.png', desc: 'Pure and bold shot' },
+        { name: 'Double Espresso', price: '60 EGP', emoji: '☕☕', image: 'espresoo/espresoo Double.png', desc: 'Twice the kick' },
+        { name: 'Iced Espresso', price: '55 EGP', emoji: '🧊☕', image: 'espresoo/espresoo Iced.png', desc: 'Chilled and strong' },
       ],
       'Croissant': [
-        { name: 'Butter Croissant', price: '40 EGP', emoji: '🥐', desc: 'Classic flaky layers' },
-        { name: 'Chocolate Croissant', price: '50 EGP', emoji: '🥐🍫', desc: 'Filled with chocolate' },
-        { name: 'Cheese Croissant', price: '48 EGP', emoji: '🥐🧀', desc: 'Savory and soft' },
+        { name: 'Butter Croissant', price: '40 EGP', emoji: '🥐', image: 'croissant_images/ComfyUI_03433_.png', desc: 'Classic flaky layers' },
+        { name: 'Chocolate Croissant', price: '50 EGP', emoji: '🥐🍫', image: 'croissant_images/ComfyUI_03443_.png', desc: 'Filled with chocolate' },
+        { name: 'Cheese Croissant', price: '48 EGP', emoji: '🥐🧀', image: 'croissant_images/ComfyUI_03435_.png', desc: 'Savory and soft' },
       ],
       'Hot Chocolate': [
-        { name: 'Small Hot Chocolate', price: '55 EGP', emoji: '🍫', desc: 'Rich cocoa' },
-        { name: 'Regular Hot Chocolate', price: '65 EGP', emoji: '🍫', desc: 'Creamy classic' },
-        { name: 'Large Hot Chocolate', price: '75 EGP', emoji: '🍫', desc: 'Extra cozy' },
+        { name: 'Small Hot Chocolate', price: '55 EGP', emoji: '🍫', image: 'hot_chocolate/Hot Chocolate S.png', desc: 'Rich cocoa' },
+        { name: 'Regular Hot Chocolate', price: '65 EGP', emoji: '🍫', image: 'hot_chocolate/Hot Chocolate M.png', desc: 'Creamy classic' },
+        { name: 'Large Hot Chocolate', price: '75 EGP', emoji: '🍫', image: 'hot_chocolate/Hot Chocolate L.png', desc: 'Extra cozy' },
       ],
       'Donuts': [
-        { name: 'Classic Glazed', price: '35 EGP', emoji: '🍩', desc: 'Sweet and light' },
-        { name: 'Chocolate Donut', price: '40 EGP', emoji: '🍩🍫', desc: 'Chocolate icing' },
-        { name: 'Filled Donut', price: '45 EGP', emoji: '🍩', desc: 'Cream or jam inside' },
+        { name: 'Classic Glazed', price: '35 EGP', emoji: '🍩', image: 'donuts/DONUT1.png', desc: 'Sweet and light' },
+        { name: 'Chocolate Donut', price: '40 EGP', emoji: '🍩🍫', image: 'donuts/DONUT2.png', desc: 'Chocolate icing' },
+        { name: 'Filled Donut', price: '45 EGP', emoji: '🍩', image: 'donuts/DONUT3.png', desc: 'Cream or jam inside' },
       ],
       'Matcha Latte': [
         { name: 'Hot Matcha Latte', price: '75 EGP', emoji: '🍵', desc: 'Earthy and warm' },
@@ -94,14 +94,48 @@ document.addEventListener('DOMContentLoaded', function () {
       items.forEach((p) => {
         const card = document.createElement('div');
         card.className = 'bg-white p-6 rounded-xl shadow hover:shadow-xl transition-transform transform hover:-translate-y-2';
-        card.innerHTML = `
-          <div class="text-4xl mb-2">${p.emoji || ''}</div>
-          <div class="flex items-baseline justify-between">
-            <h4 class="text-lg font-semibold text-brown-700">${p.name}</h4>
-            <span class="text-amber-700 font-bold">${p.price}</span>
-          </div>
-          ${p.desc ? `<p class="text-gray-600 text-sm mt-1">${p.desc}</p>` : ''}
-        `;
+
+        // Media area (image preferred, fallback to emoji)
+        const media = document.createElement('div');
+        media.className = 'mb-2';
+        if (p.image) {
+          const img = document.createElement('img');
+          img.src = p.image;
+          img.alt = p.name;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.className = 'w-full h-36 object-contain object-center rounded-md bg-white';
+          img.onerror = function () {
+            media.textContent = p.emoji || '';
+            media.className = 'text-4xl mb-2';
+          };
+          media.appendChild(img);
+        } else {
+          media.textContent = p.emoji || '';
+          media.className = 'text-4xl mb-2';
+        }
+        card.appendChild(media);
+
+        // Text content
+        const row = document.createElement('div');
+        row.className = 'flex items-baseline justify-between';
+        const title = document.createElement('h4');
+        title.className = 'text-lg font-semibold text-brown-700';
+        title.textContent = p.name;
+        const priceTag = document.createElement('span');
+        priceTag.className = 'text-amber-700 font-bold';
+        priceTag.textContent = p.price;
+        row.appendChild(title);
+        row.appendChild(priceTag);
+        card.appendChild(row);
+
+        if (p.desc) {
+          const desc = document.createElement('p');
+          desc.className = 'text-gray-600 text-sm mt-1';
+          desc.textContent = p.desc;
+          card.appendChild(desc);
+        }
+
         grid.appendChild(card);
       });
 
@@ -121,7 +155,11 @@ document.addEventListener('DOMContentLoaded', function () {
       backLink.addEventListener('click', () => {
         section.classList.add('hidden');
         if (menuSection) menuSection.classList.remove('hidden');
-        menuSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (menuSection && typeof menuSection.scrollIntoView === 'function') {
+          menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     }
   });
+
+  // Emoji rain removed

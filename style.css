@@ -1,3 +1,5 @@
+    /* Anchor absolute overlays to the hero (keep for other accents) */
+    #hero { position: relative; }
 .nav-link {
       position: relative;
       padding-bottom: 4px;
@@ -264,7 +266,8 @@
     .brand-wave-static .char:nth-child(11) { animation-delay: .60s; }
 
     /* Ensure hero content appears above background accents */
-    #hero > * { position: relative; z-index: 10; }
+    #hero > *:not(.hero-grid):not(.side-bokeh) { position: relative; z-index: 10; }
+    #hero .hero-grid { z-index: 0; }
 
     /* Catchy effects inside menu cards' white space */
     .menu-item {
@@ -312,3 +315,13 @@
       z-index: 2;
     }
     .menu-item:hover .text-4xl { transform: translateY(-2px) scale(1.05); }
+
+    /* Removed emoji rain styles */
+
+    /* Elevate common textual elements above the emoji overlay without affecting backgrounds */
+    h1, h2, h3, h4, h5, h6,
+    p, a, button, small, strong, em, blockquote, li,
+    label, input, textarea, img, i {
+      position: relative;
+      z-index: 2;
+    }
