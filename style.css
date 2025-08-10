@@ -1,11 +1,9 @@
     /* Anchor absolute overlays to the hero (keep for other accents) */
     #hero { position: relative; }
-    /* Hero background image */
-    #hero {
-      background-image: url('BG-1.png');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
+    /* Hero min-height (no background) */
+    #hero { min-height: calc(80vh + 10px); }
+    @media (min-width: 640px) {
+      #hero { min-height: calc(85vh + 10px); }
     }
 .nav-link {
       position: relative;
